@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo} from "react";
+import React, { useEffect, useState } from "react";
 import { Pagination } from "./Pagination";
 import { Bank } from "./Bank";
 import { Input } from './Input';
@@ -57,6 +57,7 @@ export const Home = (props) => {
 
   const handleOnChange = event => {
     setQuery(event)
+    console.log(query);
     updateList(event);
   }
 
