@@ -3,24 +3,25 @@ import React , { useState} from 'react';
 export const Pagination = ({ data, heading, RenderComponent, pageLimit, dataLimit }) => {
   const [pages] = useState(Math.round(data.length / dataLimit));
   const [currentPage, setCurrentPage] = useState(1);
+  const [limit, setLimit] = useState(dataLimit);
+  const rowOptions = [5, 10, 20, 30 , 50, 100];
 
-  function goToNextPage() {
+  const goToNextPage = () => {
     setCurrentPage((page) => page + 1);
   }
 
-  function goToPreviousPage() {
+  const goToPreviousPage = () => {
     setCurrentPage((page) => page - 1);
   }
 
-  function changePage(event) {
-    const pageNumber = Number(event.target.textContent);
-    setCurrentPage(pageNumber);
-  }
-
-  const getPaginatedData = () => {
-    const startIndex = currentPage * dataLimit - dataLimit;
-    const endIndex = startIndex + dataLimit;
+  const getPaginatedData = (limit) => {
+    const startIndex = currentPage * limit - limit;
+    const endIndex = startIndex + limit;
     return data.slice(startIndex, endIndex);
+  };
+
+  const handleRowChange = (event) => {
+    setLimit(parseInt(event.target.value))
   };
 
   const getPaginationGroup = () => {
@@ -29,7 +30,7 @@ export const Pagination = ({ data, heading, RenderComponent, pageLimit, dataLimi
   };
 
   return (
-    <div>  
+    <div className='list-pagination-section'>  
       <table align={"center"}>
           <thead>
             <tr>
@@ -39,7 +40,7 @@ export const Pagination = ({ data, heading, RenderComponent, pageLimit, dataLimi
             </tr>
           </thead>
           <tbody>
-          {getPaginatedData().map((d, idx) => (
+          {getPaginatedData(limit).map((d, idx) => (
             <RenderComponent key={idx} data={d} />
           ))}
           </tbody>
@@ -48,7 +49,12 @@ export const Pagination = ({ data, heading, RenderComponent, pageLimit, dataLimi
 
         <div>
         {`Showing Page:  ${currentPage}`}
-          <span className='rows-per-page'>{`Rows per Page: ${getPaginatedData().length}`}</span>
+          <span className='rows-per-page'>
+          Rows per Page:  <select onChange={handleRowChange} name="row" className="select-row">
+            { rowOptions.map( (option) => 
+              <option key={option} value={option}>{option}</option> )
+          }</select>
+            </span>
 
           <i onClick={goToPreviousPage}
             className={`prev fas fa-chevron-left ${currentPage === 1 ? 'disabled' : ''}`}
@@ -57,7 +63,7 @@ export const Pagination = ({ data, heading, RenderComponent, pageLimit, dataLimi
           {`${getPaginationGroup()[0]} - ${getPaginationGroup()[getPaginationGroup().length-1]} of ${data.length}`}
     
           <i onClick={goToNextPage}
-            className={`next fas fa-chevron-right ${currentPage === pages ? 'disabled' : ''}`}
+            className={`next fas fa-chevron-right ${currentPage === pages ||  getPaginationGroup()[getPaginationGroup().length-1] > data.length ? 'disabled' : ''}`}
             style={{marginLeft: '20px' , cursor: 'pointer'}}></i>
         </div>
       </div>

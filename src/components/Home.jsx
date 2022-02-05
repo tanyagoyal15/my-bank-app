@@ -15,18 +15,17 @@ export const Home = (props) => {
   const [error, setError] = useState("No Data Found");
   const [cachedData, setCachedData] = useState({});
   let abc = [];
-  let url = `https://vast-shore-74260.herokuapp.com/banks?city=MUMBAI`
+  // let url = `https://vast-shore-74260.herokuapp.com/banks?city=MUMBAI`
   var y; var z;
 
   const fetchData = async(city) => {
-    console.log("Fetching for City : " , city);
     setLoader(true);
-    url = `https://vast-shore-74260.herokuapp.com/banks?city=${city.toUpperCase()}`;
+    // url = `https://vast-shore-74260.herokuapp.com/banks?city=${city.toUpperCase()}`;
     getDataFromService(city)
   } 
 
   const getDataFromService = async(city) => {
-    console.log("FETCH FROM API");
+    let url = `https://vast-shore-74260.herokuapp.com/banks?city=${city.toUpperCase()}`
     const response = await fetch(url);
     const data = await response.json();
     setCachedData({[url] : data})
@@ -87,7 +86,6 @@ export const Home = (props) => {
     let data = [];
     for(let prop in cachedData) {
       if(prop.includes(cityToBeSearched.toUpperCase())) {
-        console.log("GET FROM CACHE");
         data = cachedData[prop];
       } 
     }
@@ -98,31 +96,34 @@ export const Home = (props) => {
   return (
     <div className="home">
       <div className="filters">
+        <h2>All Banks</h2>
+        <div>
         <select onChange={handleSelect} name="city" placeholder="Select City" className="select-dropdown">{
           cities.map( (city) => 
             <option key={city} value={city.toUpperCase()}>{city}</option> )
         }</select>
 
         <select onChange={handleCategory} name="category" placeholder="Select Category" className="select-dropdown">
-          <option></option>
-          { categories.map( (category,idx) => 
+          <option>Select Category</option>
+          { categories.map( (category) => 
             <option key={category} value={category.toLowerCase().split(" ").join("_")}>{category}</option> )
         }</select>
 
         <Input
-        type='text'
-        name='search'
-        placeholder='Search'
-        onChange={(e) => handleOnChange(e)}
-      />
+          type='text'
+          name='search'
+          placeholder='Search'
+          onChange={(e) => handleOnChange(e)}
+        />
+        </div>
       </div>
       
       <div className="bank-list">
       {
-        !banks.length && loader ? <div>Loading...</div> : 
+        !banks.length && loader ? <div className="loading">Loading...</div> : 
           banks.length > 0 ? 
             <Pagination data={banks} heading={heading} RenderComponent={Bank} pageLimit={5} dataLimit={5} /> 
-            : <h1>No Banks to display</h1>
+            : <h1 className="error">No Banks to display</h1>
       }
       </div>  
     </div>
