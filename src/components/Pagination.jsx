@@ -41,7 +41,7 @@ export const Pagination = ({ data, heading, RenderComponent, pageLimit, dataLimi
           </thead>
           <tbody>
           {getPaginatedData(limit).map((d, idx) => (
-            <RenderComponent key={idx} data={d} />
+            <RenderComponent key={idx} data={d} id={idx}/>
           ))}
           </tbody>
         </table>

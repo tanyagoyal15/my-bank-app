@@ -38,7 +38,7 @@
 }
 
 body {
-  margin: 2%;
+  /* margin: 2%; */
   height: 100%;
   /* width: 100%; */
 }
@@ -52,8 +52,9 @@ body {
 
 .left-section {
   margin-right: 20px;
-  border: 1px solid;
-  width: 20%;
+    padding: 20px 0 0 20px;
+    background-color: #eee;
+    width: 15%;
 }
 
 .right-section {
@@ -73,7 +74,7 @@ body {
 .left-section ul li {
   padding: 17px;
   list-style: none;
-  border-bottom: 1px solid #000;
+  /* border-bottom: 1px solid #000; */
   transition: all 0.5s ease;
 }
 
@@ -91,7 +92,7 @@ body {
 }
 
 table {
-  border: 1px solid black;
+  border: 1px solid #eee;
   table-layout: fixed;
   border-collapse: collapse;
   width: 100%;
@@ -101,7 +102,7 @@ table {
 th,
 td {
   padding: 20px;
-  border: 1px solid black;
+  border: 1px solid #eee;
   /* width: 15%; */
   overflow: hidden;
 }
@@ -131,7 +132,7 @@ td {
   /* justify-content: flex-end; */
 }
 .filters {
-  margin: 0 0 22px 0;
+  margin: 25px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -159,7 +160,7 @@ td {
 }
 
 .table-row:hover {
-  background-color: #eee;
+  background-color: #F8F8F8;
 }
 
 .table-data a {
@@ -174,12 +175,10 @@ td {
 }
 
 .card {
-  border: 1px solid #000;
-  padding: 20px;
   text-align: left;
   display: flex;
   flex-direction: column;
-  height: 74vh;
+  height: 50vh;
   justify-content: space-evenly;
 }
 
@@ -213,8 +212,16 @@ select:focus {
   width: auto;
 }
 
+.loading {
+  font-size: 40px;
+}
+
 .loading, .error {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.bank-details {
+  padding : 20px
 }

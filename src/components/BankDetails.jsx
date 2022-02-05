@@ -6,7 +6,7 @@ export const BankDetails = () => {
   let bank = location.state.bank;
 
   return (
-    <div>
+    <div className='bank-details'>
       <h2 className='title'>Bank Details : {bank.ifsc} </h2>
       <div className='card'>
         <div><b>IFSC CODE : </b> {bank.ifsc}</div>
