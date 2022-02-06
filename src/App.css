@@ -223,5 +223,17 @@ select:focus {
 }
 
 .bank-details {
-  padding : 20px
+  padding : 20px;
+}
+
+table {
+  width : auto !important;
+}
+
+.favorites, .favorites error {
+  min-height:  90vh;
+}
+
+.favorites h2 {
+  text-align: left;
 }

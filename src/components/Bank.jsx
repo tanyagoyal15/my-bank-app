@@ -12,14 +12,14 @@ export const Bank = (props) => {
       if(getArray !== 0) {
           setFavorites([...getArray])
       }
-    }, []);
+    }, [getArray]);
 
-    const addFav = (props) => {
+    const addToFavorites = (props) => {
         let array = favorites
         let addArray = true;
         array.map((item ,key) => {
             if(item === props.id) {
-                array.splice(key, 1);
+                array.splice(array.indexOf(item), 1);
                 addArray = false;
             }
         });
@@ -27,7 +27,6 @@ export const Bank = (props) => {
             array.push(id)
         }
 
-        console.log([...array]);
         setFavorites([...array])
         localStorage.setItem('favorites', JSON.stringify(favorites));
 
@@ -44,9 +43,9 @@ export const Bank = (props) => {
             {tableData.map(data => <td className='table-data'>
                 <Link to={`/bank-details/${bank.ifsc}`} state={{ bank }} >{bank[data]}</Link>
             </td>)}
-            <td i>
+            <td>
                 {
-                    favorites.includes(id) ? (<i onClick={() => addFav({bank, id})} className="fas fa-star"></i>) : (<i onClick={() => addFav({bank, id})} className="far fa-star"></i>)
+                    favorites.includes(id) ? (<i onClick={() => addToFavorites({bank, id})} className="fas fa-star"></i>) : (<i onClick={() => addToFavorites({bank, id})} className="far fa-star"></i>)
                 }
             </td>
         </tr>

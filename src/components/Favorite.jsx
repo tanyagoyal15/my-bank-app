@@ -3,7 +3,7 @@ import { Bank } from './Bank';
 import { Pagination } from './Pagination';
 
 export const Favorite = () => {
-  let myList = [{}];
+  let myList = [];
   const getArray = JSON.parse(localStorage.getItem('favorites') || '0');
   for(var i = 0; i< getArray.length; i++) {
     // myList[i] = JSON.parse(localStorage.getItem('markedItem' + getArray[i]) || '');
@@ -25,11 +25,16 @@ export const Favorite = () => {
     }]
   }
 
-  const titles = Object.keys(myList[0])
+  // const titles = Object.keys(myList[0]);
+  const titles = ["Bank ", "IFSC", "Branch", "Bank ID", "Address"];
   return (
-    <div>
-      <h5>My List</h5>
-      { myList.length > 0 ? <Pagination data={myList} heading={titles} RenderComponent={Bank} pageLimit={5} dataLimit={5} /> : <h1 className="error">No Data Found</h1>}
+    <div className='favorites'>
+      {
+        myList.length > 0 ? (<div>
+          <h2>My List</h2>
+          <Pagination data={myList} heading={titles} RenderComponent={Bank} pageLimit={5} dataLimit={5} />
+        </div>) : (<h1 className="error">No Data Found</h1>) 
+      }
     </div>
   );
 };

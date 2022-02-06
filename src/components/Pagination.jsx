@@ -48,13 +48,12 @@ export const Pagination = ({ data, heading, RenderComponent, pageLimit, dataLimi
       <div className="pagination">
 
         <div>
-        {`Showing Page:  ${currentPage}`}
           <span className='rows-per-page'>
-          Rows per Page:  <select onChange={handleRowChange} name="row" className="select-row">
+            Rows per Page: <select onChange={handleRowChange} name="row" className="select-row">
             { rowOptions.map( (option) => 
               <option key={option} value={option}>{option}</option> )
-          }</select>
-            </span>
+            } </select>
+          </span>
 
           <i onClick={goToPreviousPage}
             className={`prev fas fa-chevron-left ${currentPage === 1 ? 'disabled' : ''}`}
