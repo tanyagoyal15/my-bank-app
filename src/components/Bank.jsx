@@ -22,6 +22,7 @@ export const Bank = (props) => {
                 array.splice(array.indexOf(item), 1);
                 addArray = false;
             }
+            return array
         });
         if(addArray) {
             array.push(id)

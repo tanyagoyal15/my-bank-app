@@ -17,10 +17,6 @@ export const Home = (props) => {
 
   const fetchData = async(city) => {
     setLoader(true);
-    getDataFromService(city)
-  } 
-
-  const getDataFromService = async(city) => {
     let url = `https://vast-shore-74260.herokuapp.com/banks?city=${city.toUpperCase()}`
     const response = await fetch(url);
     const data = await response.json();
@@ -32,11 +28,11 @@ export const Home = (props) => {
         setLoader(false)
       }
     }
-  }
+  } 
 
   useEffect(() => {
     fetchData('MUMBAI');
-  }, []);
+  },[]);
 
   const handleSelect = event => {
     setCity(event.target.value);
