@@ -34,8 +34,8 @@ export const Pagination = ({ data, heading, RenderComponent, pageLimit, dataLimi
       <table align={"center"}>
           <thead>
             <tr>
-              {heading.map((head) => (
-                <th>{head}</th>
+              {heading.map((head, i) => (
+                <th key={i}>{head}</th>
               ))}
             </tr>
           </thead>

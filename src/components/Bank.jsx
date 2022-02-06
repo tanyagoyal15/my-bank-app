@@ -40,7 +40,7 @@ export const Bank = (props) => {
     
     return(
         <tr key={bank.ifsc} className="table-row">
-            {tableData.map(data => <td className='table-data'>
+            {tableData.map((data , i) => <td key={i} className='table-data'>
                 <Link to={`/bank-details/${bank.ifsc}`} state={{ bank }} >{bank[data]}</Link>
             </td>)}
             <td>
