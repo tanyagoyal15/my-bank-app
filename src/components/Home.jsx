@@ -13,7 +13,8 @@ export const Home = (props) => {
   const [category, setCategory] = useState("");
   const [query, setQuery] = useState("");
   const [loader, setLoader] = useState(true);
-  const [cachedData, setData] = useState({});;
+  const [cachedData, setData] = useState({});
+  const [disabled, setInputDisabled] = useState(true)
 
   const fetchData = async(city) => {
     setLoader(true);
@@ -49,6 +50,7 @@ export const Home = (props) => {
 
   const handleCategory = event => {
     setCategory(event.target.value);
+    event.target.value ? setInputDisabled(false) : setInputDisabled(true);
   }
 
   const handleOnChange = event => {
@@ -94,7 +96,7 @@ export const Home = (props) => {
         }</select>
 
         <select onChange={handleCategory} name="category" placeholder="Select Category">
-          <option>Select Category</option>
+          <option value="">Select Category</option>
           { categories.map( (category) => 
             <option key={category} value={category.toLowerCase().split(" ").join("_")}>{category}</option> )
         }</select>
@@ -103,6 +105,7 @@ export const Home = (props) => {
           type='text'
           name='search'
           placeholder='Search'
+          disabled={disabled}
           onChange={(e) => handleOnChange(e)}
         />
         </div>
