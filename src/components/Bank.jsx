@@ -12,7 +12,7 @@ export const Bank = (props) => {
       if(getArray !== 0) {
           setFavorites([...getArray])
       }
-    }, [getArray]);
+    }, []);
 
     const addToFavorites = (props) => {
         let array = favorites

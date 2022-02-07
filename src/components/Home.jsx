@@ -112,7 +112,7 @@ export const Home = (props) => {
       {
         !banks.length && loader ? <div className="loading">Loading...</div> : 
           banks.length > 0 ? 
-            <Pagination data={banks} heading={heading} RenderComponent={Bank} pageLimit={5} dataLimit={5} /> 
+            <Pagination data={banks} heading={heading} RenderComponent={Bank} pageLimit={10} dataLimit={10} /> 
             : <h1 className="error">No Data Found</h1>
       }
       </div>  

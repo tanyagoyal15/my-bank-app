@@ -230,7 +230,7 @@ table {
   width : auto !important;
 }
 
-.favorites, .favorites error {
+.favorites, .favorites .error {
   min-height:  90vh;
 }
 
