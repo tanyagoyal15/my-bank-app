@@ -49,7 +49,7 @@ export const Pagination = ({ data, heading, RenderComponent, pageLimit, dataLimi
 
         <div>
           <span className='rows-per-page'>
-            Rows per Page: <select onChange={handleRowChange} name="row" className="select-row">
+            Rows per Page: <select value={dataLimit} onChange={handleRowChange} name="row" className="select-row">
             { rowOptions.map( (option) => 
               <option key={option} value={option}>{option}</option> )
             } </select>
