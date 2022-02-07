@@ -50,16 +50,16 @@ export const Home = (props) => {
 
   const handleCategory = event => {
     setCategory(event.target.value);
+    updateList(event.target.value, query)
     event.target.value ? setInputDisabled(false) : setInputDisabled(true);
   }
 
   const handleOnChange = event => {
     setQuery(event)
-    console.log(query);
-    updateList(event);
+    updateList(category, event);
   }
 
-  const updateList = (query) => {
+  const updateList = (category, query) => {
     let filteredBanks = [...banks];
     if(query) {
       filteredBanks = filteredBanks.length ? 
