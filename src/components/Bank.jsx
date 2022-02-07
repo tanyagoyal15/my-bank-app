@@ -43,11 +43,11 @@ export const Bank = (props) => {
             {tableData.map((data , i) => <td key={i} className='table-data'>
                 <Link to={`/bank-details/${bank.ifsc}`} state={{ bank }} >{bank[data]}</Link>
             </td>)}
-            <td>
+            {/* <td>
                 {
                     favorites.includes(id) ? (<i onClick={() => addToFavorites({bank, id})} className="fas fa-star"></i>) : (<i onClick={() => addToFavorites({bank, id})} className="far fa-star"></i>)
                 }
-            </td>
+            </td> */}
         </tr>
     )
 };
